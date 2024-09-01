@@ -2,12 +2,13 @@ package com.programming.techie;
 
 import org.junit.jupiter.api.*;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class ContactManagerTest {
 
     ContactManager contactManager;
 
     @BeforeAll
-    public static void setupAll() {
+    public void setupAll() {
         System.out.println("Should print before all Tests");
     }
 
@@ -61,7 +62,7 @@ class ContactManagerTest {
     }
 
     @AfterAll
-    public static void tearDownAll() {
+    public void tearDownAll() {
         System.out.println("Should Be Executed At The End Of The Test");
     }
 }
