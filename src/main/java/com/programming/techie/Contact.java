@@ -3,6 +3,7 @@ package com.programming.techie;
 public class Contact {
     private String firstName;
     private String lastName;
+
     private String phoneNumber;
 
     public Contact(String firstName, String lastName, String phoneNumber) {
@@ -17,6 +18,10 @@ public class Contact {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     public void validateFirstName() {
