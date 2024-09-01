@@ -1,14 +1,23 @@
 package com.programming.techie;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 class ContactManagerTest {
 
+    ContactManager contactManager;
+
+    @BeforeAll
+    public static void setupAll() {
+        System.out.println("Should print before all Tests");
+    }
+
+    @BeforeEach
+    public void setup() {
+        contactManager = new ContactManager();
+    }
+
     @Test
     public void shouldCreateContact() {
-        ContactManager contactManager = new ContactManager();
         contactManager.addContact("John", "Doe", "0123456789");
 
         Assertions.assertFalse(contactManager.getAllContacts().isEmpty());
@@ -22,7 +31,6 @@ class ContactManagerTest {
     @Test
     @DisplayName("Should Not Create Contact When First Name Is Null")
     public void shouldThrowRuntimeExceptionWhenFirstNameIsNull() {
-        ContactManager contactManager = new ContactManager();
 
         Assertions.assertThrows(RuntimeException.class, () -> {
             contactManager.addContact(null, "Doe", "0123456789");
@@ -32,7 +40,6 @@ class ContactManagerTest {
     @Test
     @DisplayName("Should Not Create Contact When Last Name Is Null")
     public void shouldThrowRuntimeExceptionWhenLastNameIsNull() {
-        ContactManager contactManager = new ContactManager();
 
         Assertions.assertThrows(RuntimeException.class, () -> {
             contactManager.addContact("John", null, "0123456789");
@@ -42,12 +49,19 @@ class ContactManagerTest {
     @Test
     @DisplayName("Should Not Create Contact When Phone Number Is Null")
     public void shouldThrowRuntimeExceptionWhenPhoneNumberIsNull() {
-        ContactManager contactManager = new ContactManager();
 
         Assertions.assertThrows(RuntimeException.class, () -> {
             contactManager.addContact("John", "Doe", null);
         });
     }
 
+    @AfterEach
+    public void tearDown() {
+        System.out.println("Should Execute After Each Test");
+    }
 
+    @AfterAll
+    public static void tearDownAll() {
+        System.out.println("Should Be Executed At The End Of The Test");
+    }
 }
