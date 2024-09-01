@@ -95,4 +95,14 @@ class ContactManagerTest {
                         contact.getLastName().equals("Doe") &&
                         contact.getPhoneNumber().equals("0123456789")));
     }
+
+    @Test
+    @DisplayName("Test Contact Creation on Developer Machine")
+    public void shouldTestContactCreationOnDEV() {
+        Assumptions.assumeTrue("DEV".equals(System.getProperty("ENV")));
+        contactManager.addContact("John", "Doe", "0123456789");
+
+        Assertions.assertFalse(contactManager.getAllContacts().isEmpty());
+        Assertions.assertEquals(1, contactManager.getAllContacts().size());
+    }
 }
